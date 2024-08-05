@@ -10,22 +10,24 @@ const searchButtonCreate = document.querySelector('[data-create]');
 const searchButtonDestroy = document.querySelector('[data-destroy]');
 
 function createBoxes(amount) {
-  const fragment = document.createDocumentFragment();
-  for (let i = 0; i < amount; i++) {
-    const box = document.createElement('div');
-    box.style.width = `${30 + i * 10}px`;
-    box.style.height = `${30 + i * 10}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    fragment.append(box);
+  let width = 30;
+  let height = 30;
+  let hex = '';
+
+  for (let i = 1; i <= amount; i++) {
+    hex += `<div class='box' style='width: ${width}px; height: ${height}px; background-color: ${getRandomHexColor()}'></div>`;
+    width += 10;
+    height += 10;
   }
-  searchDiv.append(fragment);
+
+  searchDiv.innerHTML = hex;
 }
 searchButtonCreate.addEventListener('click', () => {
-  const amount = parseInt(searchInput.value);
-  if (amount >= 1 && amount <= 100) {
-    createBoxes(amount);
-    searchInput.value = '';
+  const input = searchInput.value;
+  if (input >= 1 && input <= 100) {
+    createBoxes(input);
   } else {
+    searchInput.value = '';
     alert('number 1 and 100');
   }
 });

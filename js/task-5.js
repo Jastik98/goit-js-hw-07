@@ -7,6 +7,7 @@ const searchBody = document.querySelector('body');
 const searchButton = document.querySelector('.change-color');
 const searchSpan = document.querySelector('.color');
 searchButton.addEventListener('click', () => {
-  searchBody.style.backgroundColor = getRandomHexColor();
-  searchSpan.textContent = `${getRandomHexColor()}`;
+  const result = getRandomHexColor();
+  searchBody.style.backgroundColor = result;
+  searchSpan.textContent = result;
 });
